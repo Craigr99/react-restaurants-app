@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+// import { Row, Col, Card, CardTitle } from "react-materialize";
+import "materialize-css/dist/css/materialize.min.css";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Row>
+        <Col style={{ backgroundColor: "red" }} l={9}>
+          {" "}
+          Hello
+        </Col>
+        <Col m={6} s={12} l={3}>
+          <Card
+            actions={[
+              <a key="1" href="/">
+                This is a Link
+              </a>,
+            ]}
+            header={
+              <CardTitle image="https://materializecss.com/images/sample-1.jpg">
+                Card Title
+              </CardTitle>
+            }
+          >
+            Here is the standard card with an image thumbnail.
+          </Card>
+        </Col>
+      </Row> */}
     </div>
   );
-}
+};
 
 export default App;
