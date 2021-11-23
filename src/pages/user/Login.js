@@ -1,5 +1,6 @@
 import { Row, Col, Card, Icon, Checkbox, Button } from "react-materialize";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const {
@@ -20,7 +21,7 @@ const LoginPage = () => {
           textClassName=""
           title="Login"
         >
-          <form className="white " onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Row>
               <Col className="input-field col s12">
                 <input
@@ -76,12 +77,26 @@ const LoginPage = () => {
                   node="button"
                   type="submit"
                   waves="light"
-                  className="col s12"
+                  className="col s12 blue darken-1"
                 >
                   Login
                 </Button>
               </Col>
             </Row>
+            <div className="center">
+              <div className="margin">
+                <a href="/#">
+                  <b>Forgot Password?</b>
+                </a>
+                <div className="divider margin top-20 bottom-20"></div>
+              </div>
+              <div className="margin">
+                <p>Don't have an account?</p>
+                <Link to="/register">
+                  <b>Sign up</b>
+                </Link>
+              </div>
+            </div>
           </form>
         </Card>
       </Col>
