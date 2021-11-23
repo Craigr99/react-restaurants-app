@@ -1,31 +1,26 @@
 // import { Row, Col, Card, CardTitle } from "react-materialize";
+import "./style/spacing-helper.css";
 import "materialize-css/dist/css/materialize.min.css";
+import "./style/App.css";
+import NavBar from "./components/Navbar.js";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+//PAGES
+import LoginPage from "./pages/user/Login.js";
+import RegisterPage from "./pages/user/Register.js";
 
 const App = () => {
   return (
-    <div className="App">
-      {/* <Row>
-        <Col style={{ backgroundColor: "red" }} l={9}>
-          {" "}
-          Hello
-        </Col>
-        <Col m={6} s={12} l={3}>
-          <Card
-            actions={[
-              <a key="1" href="/">
-                This is a Link
-              </a>,
-            ]}
-            header={
-              <CardTitle image="https://materializecss.com/images/sample-1.jpg">
-                Card Title
-              </CardTitle>
-            }
-          >
-            Here is the standard card with an image thumbnail.
-          </Card>
-        </Col>
-      </Row> */}
+    <div className="grey lighten-4">
+      <Router>
+        <NavBar />
+        <main>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </Routes>
+        </main>
+      </Router>
     </div>
   );
 };
