@@ -1,6 +1,6 @@
 import "materialize-css/dist/css/materialize.min.css";
 import { Navbar, Icon } from "react-materialize";
-import { M } from "materialize-css";
+import "materialize-css";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
@@ -29,6 +29,9 @@ const NavBar = () => {
           preventScrolling: true,
         }}
       >
+        <Link to="/restaurants" className="sidenav-close">
+          <span className="blue-text text-darken-1">Restaurants</span>
+        </Link>
         <Link to="/login" className="sidenav-close">
           <span className="blue-text text-darken-1">Login</span>
         </Link>
