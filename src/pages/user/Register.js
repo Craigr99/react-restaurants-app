@@ -12,7 +12,7 @@ const RegisterPage = () => {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <Row className="container">
+    <Row>
       <Col s={12} m={6} offset={"m3"}>
         <Card
           className="white"

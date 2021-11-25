@@ -1,9 +1,11 @@
 import "materialize-css/dist/css/materialize.min.css";
-import { Navbar, Icon } from "react-materialize";
+import { Navbar, Icon, NavItem } from "react-materialize";
 import "materialize-css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = (props) => {
+  let navigate = useNavigate();
+
   return (
     <nav>
       <Navbar
@@ -12,9 +14,9 @@ const NavBar = () => {
         alignLinks="right"
         id="mobile-nav"
         brand={
-          <a className="brand-logo black-text" href="/">
+          <Link className="brand-logo black-text" to="/">
             Restauranty
-          </a>
+          </Link>
         }
         menuIcon={<Icon className="black-text">menu</Icon>}
         options={{
@@ -32,12 +34,38 @@ const NavBar = () => {
         <Link to="/restaurants" className="sidenav-close">
           <span className="blue-text text-darken-1">Restaurants</span>
         </Link>
-        <Link to="/login" className="sidenav-close">
-          <span className="blue-text text-darken-1">Login</span>
-        </Link>
-        <Link to="/register" className="sidenav-close">
-          <span className="blue-text text-darken-1">Register</span>
-        </Link>
+        {/* IF user is logged OUT */}
+        {!props.authenticated ? (
+          <Link to="/login" className="sidenav-close">
+            <span className="blue-text text-darken-1">Login</span>
+          </Link>
+        ) : (
+          ""
+        )}
+        {!props.authenticated ? (
+          <Link to="/register" className="sidenav-close">
+            <span className="blue-text text-darken-1">Register</span>
+          </Link>
+        ) : (
+          ""
+        )}
+
+        {/* IF user is logged IN */}
+        {props.authenticated ? (
+          <NavItem className="sidenav-close">
+            <span
+              className="blue-text text-darken-1"
+              onClick={() => {
+                props.onAuthenticated(false);
+                navigate("/login");
+              }}
+            >
+              Logout
+            </span>
+          </NavItem>
+        ) : (
+          ""
+        )}
       </Navbar>
     </nav>
   );

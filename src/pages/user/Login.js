@@ -1,18 +1,42 @@
+import { useState } from "react";
 import { Row, Col, Card, Icon, Checkbox, Button } from "react-materialize";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const LoginPage = () => {
+const LoginPage = (props) => {
+  let navigate = useNavigate();
+  const [responseErrors, setResponseErrors] = useState(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    axios
+      .post("https://craig-restaurants-api.herokuapp.com/users/login", {
+        email: data.email,
+        password: data.password,
+      })
+      .then((res) => {
+        console.log(res.data.auth_token);
+        props.onAuthenticated(true, res.data.auth_token);
+        navigate("/restaurants");
+      })
+      .catch((err) => {
+        console.log(`error: ${err}`);
+        if (err.response.data.error) {
+          setResponseErrors(err.response.data.error);
+          console.log(responseErrors);
+        }
+      });
+  };
 
   return (
-    <Row className="container">
+    <Row>
       <Col s={12} m={6} offset={"m3"}>
         <Card
           className="white"
@@ -50,6 +74,7 @@ const LoginPage = () => {
                   className={("validate", errors.password ? "invalid" : "")}
                   {...register("password", { required: true, minLength: 8 })}
                 />
+                <label htmlFor="password">Password</label>
                 {/* Errors */}
                 {errors.password?.type === "required" && (
                   <span className="red-text">This field is required</span>
@@ -59,7 +84,15 @@ const LoginPage = () => {
                     Password should be at least 8 characters long.
                   </span>
                 )}
-                <label htmlFor="password">Password</label>
+
+                {responseErrors ? (
+                  <>
+                    <br />
+                    <span className="red-text">{responseErrors}</span>
+                  </>
+                ) : (
+                  ""
+                )}
               </Col>
             </Row>
             <Row>
