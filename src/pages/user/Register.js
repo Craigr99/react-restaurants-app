@@ -1,15 +1,40 @@
-import { Row, Col, Card, Icon, Button } from "react-materialize";
+import { Row, Col, Card, Icon } from "react-materialize";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Button from "../../components/Button";
 
-const RegisterPage = () => {
+const RegisterPage = (props) => {
+  let navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    axios
+      .post("https://craig-restaurants-api.herokuapp.com/users/register", {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.auth_token);
+        props.onAuthenticated(true, res.data.auth_token);
+        navigate("/restaurants");
+      })
+      .catch((err) => {
+        console.log(`error: ${err}`);
+        // if (err.response.data.error) {
+        //   setResponseErrors(err.response.data.error);
+        //   console.log(responseErrors);
+        // }
+      });
+  };
 
   return (
     <Row>
@@ -103,10 +128,9 @@ const RegisterPage = () => {
                   node="button"
                   type="submit"
                   waves="light"
-                  className="col s12 blue darken-1"
-                >
-                  Register
-                </Button>
+                  buttonStyle="primary col s12"
+                  text="Register"
+                />
               </Col>
             </Row>
             <div className="center">

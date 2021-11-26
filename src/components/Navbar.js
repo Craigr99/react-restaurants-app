@@ -10,15 +10,15 @@ const NavBar = (props) => {
     <nav>
       <Navbar
         centerChildren
-        className="white"
+        className="blue lighten-1 white-text"
         alignLinks="right"
         id="mobile-nav"
         brand={
-          <Link className="brand-logo black-text" to="/">
+          <Link className="brand-logo" to="/">
             Restauranty
           </Link>
         }
-        menuIcon={<Icon className="black-text">menu</Icon>}
+        menuIcon={<Icon>menu</Icon>}
         options={{
           draggable: true,
           edge: "left",
@@ -32,19 +32,19 @@ const NavBar = (props) => {
         }}
       >
         <Link to="/restaurants" className="sidenav-close">
-          <span className="blue-text text-darken-1">Restaurants</span>
+          <span>Restaurants</span>
         </Link>
         {/* IF user is logged OUT */}
         {!props.authenticated ? (
           <Link to="/login" className="sidenav-close">
-            <span className="blue-text text-darken-1">Login</span>
+            <span>Login</span>
           </Link>
         ) : (
           ""
         )}
         {!props.authenticated ? (
           <Link to="/register" className="sidenav-close">
-            <span className="blue-text text-darken-1">Register</span>
+            <span>Register</span>
           </Link>
         ) : (
           ""
@@ -54,7 +54,6 @@ const NavBar = (props) => {
         {props.authenticated ? (
           <NavItem className="sidenav-close">
             <span
-              className="blue-text text-darken-1"
               onClick={() => {
                 props.onAuthenticated(false);
                 navigate("/login");

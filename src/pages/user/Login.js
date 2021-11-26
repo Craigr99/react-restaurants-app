@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Row, Col, Card, Icon, Checkbox, Button } from "react-materialize";
+import { Row, Col, Card, Icon, Checkbox } from "react-materialize";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Button from "../../components/Button";
 
 const LoginPage = (props) => {
   let navigate = useNavigate();
@@ -43,7 +44,7 @@ const LoginPage = (props) => {
           closeIcon={<Icon>close</Icon>}
           revealIcon={<Icon>more_vert</Icon>}
           textClassName=""
-          title="Login"
+          title="Login to your Account"
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Row>
@@ -110,10 +111,9 @@ const LoginPage = (props) => {
                   node="button"
                   type="submit"
                   waves="light"
-                  className="col s12 blue darken-1"
-                >
-                  Login
-                </Button>
+                  buttonStyle="primary col s12"
+                  text="Login"
+                />
               </Col>
             </Row>
             <div className="center">

@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Row, Col } from "react-materialize";
+import RestaurantCard from "../../components/RestaurantCard";
 
 // const getRandomNumber = () => {
 //   return Math.floor(Math.random() * 206);
@@ -20,18 +22,23 @@ const Index = () => {
 
   return (
     <div>
-      <h2>This is the restaurant index</h2>
-      {restaurants.map((restaurant) => (
-        <div key={restaurant._id}>
-          {/* <img
-            src={
-              "https://source.unsplash.com/collection/190727/?sig=" +
-              getRandomNumber()
-            }
-          /> */}
-          <p>{restaurant.name}</p>
-        </div>
-      ))}
+      <Row>
+        <Col>
+          <h3>List of Restaurants</h3>
+        </Col>
+      </Row>
+      <Row>
+        <Col m={6}>
+          <Row>
+            {restaurants.map((restaurant, i) => {
+              return <RestaurantCard restaurant={restaurant} index={i} />;
+            })}
+          </Row>
+        </Col>
+        <Col m={6} style={{ backgroundColor: "red" }}>
+          <Col m={3}>Map goes here</Col>
+        </Col>
+      </Row>
     </div>
   );
 };

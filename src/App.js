@@ -10,6 +10,7 @@ import HomePage from "./pages/Home.js";
 import LoginPage from "./pages/user/Login.js";
 import RegisterPage from "./pages/user/Register.js";
 import RestaurantIndex from "./pages/restaurants/Index.js";
+import RestaurantShow from "./pages/restaurants/Show.js";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -48,8 +49,17 @@ const App = () => {
                 />
               }
             />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route
+              path="/register"
+              element={
+                <RegisterPage
+                  onAuthenticated={onAuthenticated}
+                  authenticated={authenticated}
+                />
+              }
+            />
             <Route path="/restaurants" element={<RestaurantIndex />} />
+            <Route path="/restaurants/:id" element={<RestaurantShow />} />
           </Routes>
         </main>
       </Router>
