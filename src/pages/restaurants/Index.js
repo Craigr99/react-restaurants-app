@@ -1,8 +1,8 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Row, Col } from "react-materialize";
 import RestaurantCard from "../../components/RestaurantCard";
-
+import Map from "../../components/Map";
 // const getRandomNumber = () => {
 //   return Math.floor(Math.random() * 206);
 // };
@@ -31,12 +31,16 @@ const Index = () => {
         <Col m={6}>
           <Row>
             {restaurants.map((restaurant, i) => {
-              return <RestaurantCard restaurant={restaurant} index={i} />;
+              return (
+                <RestaurantCard restaurant={restaurant} index={i} key={i} />
+              );
             })}
           </Row>
         </Col>
         <Col m={6} style={{ backgroundColor: "red" }}>
-          <Col m={3}>Map goes here</Col>
+          <Col m={12}>
+            <Map />
+          </Col>
         </Col>
       </Row>
     </div>
