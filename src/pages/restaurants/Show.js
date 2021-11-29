@@ -1,22 +1,29 @@
+import axios from "axios";
 import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+
 const Show = () => {
   let { id } = useParams();
-  //   const [restaurants, setRestaurants] = useState(null);
-  //   useEffect(() => {
-  //     axios
-  //       .get("https://craig-restaurants-api.herokuapp.com/restaurants")
-  //       .then((res) => {
-  //         console.log(res.data.restaurants);
-  //         setRestaurants(res.data.restaurants);
-  //       });
-  //   }, []);
+  const [restaurant, setRestaurant] = useState(null);
+  let token = localStorage.getItem("token");
 
-  //   if (!restaurants) return null;
+  useEffect(() => {
+    console.log(token);
+    axios
+      .get(`https://craig-restaurants-api.herokuapp.com/restaurants/${id}`)
+      .then((res) => {
+        console.log(res.data.restaurant);
+        setRestaurant(res.data.restaurant);
+      })
+      .catch((err) => console.log(err));
+  }, [id, token]);
+
+  if (!restaurant) return null;
 
   return (
     <div>
-      <h2>Restairant index</h2>
-      {id}
+      <h2>Restairant show</h2>
+      {restaurant.name}
       {/* <Row>
         <Col>
           <h3>List of Restaurants</h3>

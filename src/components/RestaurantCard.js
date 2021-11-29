@@ -1,10 +1,10 @@
 import { Col, Card, Icon, CardTitle } from "react-materialize";
-
+import { Link } from "react-router-dom";
 import Button from "./Button";
 
 const RestaurantCard = (props) => {
   return (
-    <Col s={12} m={6} key={props.index}>
+    <Col s={12} m={6}>
       {/* <img
       //   src={
       //     "https://source.unsplash.com/collection/190727/?sig=" +
@@ -29,19 +29,15 @@ const RestaurantCard = (props) => {
         }
         revealIcon={<Icon>more_vert</Icon>}
         actions={[
+          <Link to={`/restaurants/${props.restaurant._id}`} key={props.index}>
+            <Button waves="light" buttonStyle="primary" text="View" />
+          </Link>,
           <Button
-            key={props.restaurant}
-            waves="light"
-            buttonStyle="primary"
-            text="View"
-          />,
-
-          <Button
-            key={props.restaurant.restaurant_id}
             waves="light"
             flat
             buttonStyle="flat-danger"
             text="Delete"
+            key={props.index + 1}
           />,
         ]}
       >
