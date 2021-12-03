@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Row, Col, Card, Icon, Checkbox } from "react-materialize";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../config/index.js";
 import Button from "../../components/Button";
 
 const LoginPage = (props) => {
@@ -18,7 +18,7 @@ const LoginPage = (props) => {
   const onSubmit = (data) => {
     console.log(data);
     axios
-      .post("https://craig-restaurants-api.herokuapp.com/users/login", {
+      .post("/users/login", {
         email: data.email,
         password: data.password,
       })
@@ -37,7 +37,7 @@ const LoginPage = (props) => {
   };
 
   return (
-    <Row>
+    <Row className="mt3">
       <Col s={12} m={6} offset={"m3"}>
         <Card
           className="white"
@@ -117,13 +117,13 @@ const LoginPage = (props) => {
               </Col>
             </Row>
             <div className="center">
-              <div className="margin">
+              <div>
                 <a href="/#">
                   <b>Forgot Password?</b>
                 </a>
-                <div className="divider margin top-20 bottom-20"></div>
+                <div className="divider my3"></div>
               </div>
-              <div className="margin">
+              <div>
                 <p>Don't have an account?</p>
                 <Link to="/register">
                   <b>Sign up</b>

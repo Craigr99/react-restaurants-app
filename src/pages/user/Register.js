@@ -1,7 +1,7 @@
 import { Row, Col, Card, Icon } from "react-materialize";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../config/index.js";
 import Button from "../../components/Button";
 
 const RegisterPage = (props) => {
@@ -16,7 +16,7 @@ const RegisterPage = (props) => {
   const onSubmit = (data) => {
     console.log(data);
     axios
-      .post("https://craig-restaurants-api.herokuapp.com/users/register", {
+      .post("/users/register", {
         name: data.name,
         email: data.email,
         password: data.password,
@@ -28,7 +28,7 @@ const RegisterPage = (props) => {
         navigate("/restaurants");
       })
       .catch((err) => {
-        console.log(`error: ${err}`);
+        // console.log(`error: ${err}`);
         // if (err.response.data.error) {
         //   setResponseErrors(err.response.data.error);
         //   console.log(responseErrors);
@@ -37,7 +37,7 @@ const RegisterPage = (props) => {
   };
 
   return (
-    <Row>
+    <Row className="mt3">
       <Col s={12} m={6} offset={"m3"}>
         <Card
           className="white"
@@ -134,13 +134,10 @@ const RegisterPage = (props) => {
               </Col>
             </Row>
             <div className="center">
-              <div className="margin">
-                <a href="/#">
-                  <b>Forgot Password?</b>
-                </a>
-                <div className="divider margin top-20 bottom-20"></div>
+              <div>
+                <div className="divider"></div>
               </div>
-              <div className="margin">
+              <div className="mt3">
                 <p>Already have an account?</p>
                 <Link to="/login">
                   <b>Login</b>

@@ -56,7 +56,7 @@ const NavBar = (props) => {
             <span
               onClick={() => {
                 props.onAuthenticated(false);
-                navigate("/login");
+                navigate("/login", { replace: true });
               }}
             >
               Logout
