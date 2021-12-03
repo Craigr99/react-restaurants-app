@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 //import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
 import MapGL, { Marker } from "react-map-gl";
@@ -8,8 +8,8 @@ import "../style/App.css";
 const MAPBOX_TOKEN =
   "pk.eyJ1IjoiY3JhaWdyMSIsImEiOiJja3dnaG5qNjQwNWl4MnNwa2s5ejltbTlpIn0.R_64jf1wAuGlBUA2ziGLLQ"; // Set your mapbox token here
 const Map = () => {
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
+  const [lat] = useState(0);
+  const [lng] = useState(0);
   const [viewport, setViewport] = useState({
     latitude: lat,
     longitude: lng,

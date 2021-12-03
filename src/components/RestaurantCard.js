@@ -2,6 +2,7 @@ import { Col, Card, Icon, CardTitle } from "react-materialize";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 
+
 const RestaurantCard = (props) => {
   return (
     <Col s={12} m={6}>
