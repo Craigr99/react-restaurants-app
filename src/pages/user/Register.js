@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../../config/index.js";
 import Button from "../../components/Button";
+import { useState } from "react";
 
 const RegisterPage = (props) => {
   let navigate = useNavigate();
+  const [responseErrors, setResponseErrors] = useState(null);
 
   const {
     register,
@@ -28,11 +30,11 @@ const RegisterPage = (props) => {
         navigate("/restaurants");
       })
       .catch((err) => {
-        // console.log(`error: ${err}`);
-        // if (err.response.data.error) {
-        //   setResponseErrors(err.response.data.error);
-        //   console.log(responseErrors);
-        // }
+        if (err) {
+          setResponseErrors(
+            "Error - User with this email already exists in the database."
+          );
+        }
       });
   };
 
@@ -72,7 +74,10 @@ const RegisterPage = (props) => {
                 <input
                   id="email"
                   type="email"
-                  className={("validate", errors.email ? "invalid" : "")}
+                  className={
+                    ("validate",
+                    errors.email || responseErrors ? "invalid" : "")
+                  }
                   {...register("email", { required: true, minLength: 5 })}
                 />
                 <label htmlFor="email">Email</label>
@@ -84,6 +89,11 @@ const RegisterPage = (props) => {
                   <span className="red-text">
                     This field should be more than 5 characters.
                   </span>
+                )}
+                {responseErrors ? (
+                  <span className="red-text">{responseErrors}</span>
+                ) : (
+                  ""
                 )}
               </Col>
             </Row>
