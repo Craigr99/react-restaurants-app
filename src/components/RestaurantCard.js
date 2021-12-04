@@ -2,7 +2,6 @@ import { Col, Card, Icon, CardTitle } from "react-materialize";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 
-
 const RestaurantCard = (props) => {
   return (
     <Col s={12} m={6}>
@@ -50,7 +49,7 @@ const RestaurantCard = (props) => {
             props.restaurant.borough}
         </p>
         <p>
-          <a href="#">View on Map</a>
+          <a href="/">View on Map</a>
         </p>
       </Card>
     </Col>

@@ -20,7 +20,7 @@ import NotFound from "./pages/NotFound.js";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
-  let protectedRoutes;
+  // let protectedRoutes;
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -37,18 +37,24 @@ const App = () => {
     }
   };
 
-  if (authenticated) {
-    protectedRoutes = (
-      <>
-        <Route
-          path="/restaurants/create"
-          element={
-            authenticated ? <RestaurantCreate /> : <Navigate to="*" replace />
-          }
-        />
-      </>
-    );
-  }
+  // if (authenticated) {
+  //   protectedRoutes = (
+  //     <>
+  //       <Route
+  //         path="/restaurants/create"
+  //         element={
+  //           authenticated ? <RestaurantCreate /> : <Navigate to="*" replace />
+  //         }
+  //       />
+  //     </>
+  //   );
+  // }
+
+  const onToastToggled = (props) => {
+    if (props.onToastToggled) {
+      window.M.toast({ html: "Restaurant Added!" }, 100);
+    }
+  };
 
   return (
     <div className="grey lighten-4">
@@ -81,6 +87,7 @@ const App = () => {
             <Route
               path="/restaurants"
               element={<RestaurantIndex authenticated={authenticated} />}
+              onToastToggled={onToastToggled}
             />
             {/* {protectedRoutes} */}
             <Route
@@ -92,6 +99,7 @@ const App = () => {
                   <Navigate to="*" replace />
                 )
               }
+              onToastToggled={onToastToggled}
             />
             <Route path="/restaurants/:id" element={<RestaurantShow />} />
             <Route path="*" element={<NotFound />} />

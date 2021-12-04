@@ -1,31 +1,14 @@
 import axios from "../../config/index";
-import React, { useRef, useState, useEffect } from "react";
-import {
-  M,
-  Row,
-  Col,
-  Button,
-  Icon,
-  ProgressBar,
-  Preloader,
-  Toast,
-  Modal,
-  Card,
-  Link,
-} from "react-materialize";
+import React, { useState, useEffect } from "react";
+import { Row, Col, Button, Icon, Preloader } from "react-materialize";
 import RestaurantCard from "../../components/RestaurantCard";
 import Map from "../../components/Map";
 import { useNavigate } from "react-router-dom";
-
-// const getRandomNumber = () => {
-//   return Math.floor(Math.random() * 206);
-// };
 
 const Index = (props) => {
   let navigate = useNavigate();
 
   const [restaurants, setRestaurants] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     axios.get("/restaurants").then((res) => {
@@ -38,10 +21,6 @@ const Index = (props) => {
 
   const Loading = () => {
     return <Preloader active color="blue" flashing size="big" />;
-  };
-
-  const onToastToggled = (props) => {
-    window.M.toast({ html: "Restaurant Added!" }, 100);
   };
 
   return (
@@ -84,6 +63,7 @@ const Index = (props) => {
           </Row>
         </>
       ) : (
+        // Pre-Loader
         <Col s={12}>
           <Loading />
         </Col>
