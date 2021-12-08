@@ -38,13 +38,21 @@ const App = () => {
     }
   };
 
+  const onToastToggled = (text) => {
+    window.M.toast({ html: text }, 100);
+  };
+
   if (authenticated) {
     protectedRoutes = (
       <>
         <Route
           path="/restaurants/create"
           element={
-            authenticated ? <RestaurantCreate /> : <Navigate to="*" replace />
+            authenticated ? (
+              <RestaurantCreate onToastToggled={onToastToggled} />
+            ) : (
+              <Navigate to="*" replace />
+            )
           }
         />
         <Route
@@ -56,12 +64,6 @@ const App = () => {
       </>
     );
   }
-
-  const onToastToggled = (props) => {
-    if (props.onToastToggled) {
-      window.M.toast({ html: "Restaurant Added!" }, 100);
-    }
-  };
 
   return (
     <div className="grey lighten-4">
@@ -104,20 +106,15 @@ const App = () => {
               onToastToggled={onToastToggled}
             />
             {protectedRoutes}
-            {/* <Route
-              path="/restaurants/create"
-              element={
-                authenticated ? (
-                  <RestaurantCreate />
-                ) : (
-                  <Navigate to="*" replace />
-                )
-              }
-              onToastToggled={onToastToggled}
-            /> */}
+
             <Route
               path="/restaurants/:id"
-              element={<RestaurantShow authenticated={authenticated} />}
+              element={
+                <RestaurantShow
+                  authenticated={authenticated}
+                  onToastToggled={onToastToggled}
+                />
+              }
             />
             <Route path="*" element={<NotFound />} />
           </Routes>

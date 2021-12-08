@@ -53,7 +53,13 @@ const Index = (props) => {
           <Row>
             {restaurants.map((restaurant, i) => {
               return (
-                <RestaurantCard restaurant={restaurant} index={i} key={i} />
+                <RestaurantCard
+                  authenticated={props.authenticated}
+                  restaurant={restaurant}
+                  onToastToggled={props.onToastToggled}
+                  index={i}
+                  key={i}
+                />
               );
             })}
           </Row>

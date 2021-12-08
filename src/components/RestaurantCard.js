@@ -1,6 +1,6 @@
-import { Col, Card, Icon, CardTitle } from "react-materialize";
+import React from "react";
+import { Col, Card, Icon, CardTitle, Button } from "react-materialize";
 import { Link } from "react-router-dom";
-import Button from "./Button";
 
 const RestaurantCard = (props) => {
   return (
@@ -29,16 +29,22 @@ const RestaurantCard = (props) => {
         }
         revealIcon={<Icon>more_vert</Icon>}
         actions={[
-          <Link to={`/restaurants/${props.restaurant._id}`} key={props.index}>
-            <Button waves="light" buttonStyle="primary" text="View" />
-          </Link>,
-          <Button
-            waves="light"
-            flat
-            buttonStyle="flat-danger"
-            text="Delete"
-            key={props.index + 1}
-          />,
+          <React.Fragment key={props.index}>
+            <Link to={`/restaurants/${props.restaurant._id}`}>
+              <Button waves="light" className="blue darken-1">
+                View
+              </Button>
+            </Link>
+            {props.authenticated ? (
+              <Link to={`/restaurants/${props.restaurant._id}/edit`}>
+                <Button waves="light" flat className="orange-text">
+                  Edit
+                </Button>
+              </Link>
+            ) : (
+              ""
+            )}
+          </React.Fragment>,
         ]}
       >
         <p>

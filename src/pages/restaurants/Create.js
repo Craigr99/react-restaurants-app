@@ -41,7 +41,7 @@ const Create = (props) => {
         console.log(`error: ${err}`);
       });
     navigate("/restaurants");
-    // props.onToastToggled(true);
+    props.onToastToggled("Restaurant Added!");
   };
 
   return (
