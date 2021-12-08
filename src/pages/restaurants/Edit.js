@@ -28,8 +28,20 @@ const Edit = () => {
       });
   }, [id, token]);
 
+  // Set form values
   useEffect(() => {
-    setForm(restaurant);
+    setForm({
+      name: restaurant.name,
+      cuisine: restaurant.cuisine,
+      borough: restaurant.borough,
+      address: {
+        building: restaurant.address.building,
+        coord: restaurant.address.coord,
+        street: restaurant.address.street,
+        zipcode: restaurant.address.zipcode,
+      },
+    });
+    console.log(form);
   }, [restaurant]);
 
   if (!restaurant) return null;
@@ -41,7 +53,9 @@ const Edit = () => {
     }));
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
+
     console.log("form", form);
     // restaurant.address.coord = [
     //   restaurant.address.longitude,
@@ -83,13 +97,13 @@ const Edit = () => {
         >
           <form onSubmit={onSubmit}>
             <Row>
-              <Col className="input-field" s={12}>
+              {/* <Col className="input-field" s={12}>
                 <input
                   name="name"
                   type="text"
                   onChange={handleForm}
-                  defaultValue={form.name}
                   value={form.name}
+                  required
                 />
                 <label className="active" htmlFor="name">
                   Restaurant Name
@@ -101,23 +115,42 @@ const Edit = () => {
                   name="borough"
                   type="text"
                   onChange={handleForm}
-                  defaultValue={form.borough}
+                  value={form.borough}
+                  required
                 />
                 <label htmlFor="borough" className="active">
                   Borough
                 </label>
               </Col>
               <Col className="input-field col s12">
-                <input name="cuisine" type="text" onChange={handleForm} />
+                <input
+                  name="cuisine"
+                  type="text"
+                  onChange={handleForm}
+                  value={form.cuisine}
+                  required
+                />
                 <label className="active" htmlFor="cuisine">
                   Cuisine
                 </label>
-              </Col>
+              </Col> */}
               <Col className="input-field" s={12} l={6}>
-                <input type="number" onChange={handleForm} />
-                <label className="active" htmlFor="address.building">
-                  Building
-                </label>
+                {form.address.building ? (
+                  <>
+                    <input
+                      name="building"
+                      type="number"
+                      value={form.address.building}
+                      onChange={handleForm}
+                      required
+                    />
+                    <label className="active" htmlFor="address.building">
+                      Building
+                    </label>
+                  </>
+                ) : (
+                  "Loading..."
+                )}
               </Col>
               <Col className="input-field" s={12} l={6}>
                 <input type="number" onChange={handleForm} />

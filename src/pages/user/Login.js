@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Row, Col, Card, Icon, Checkbox } from "react-materialize";
+import { Row, Col, Card, Icon, Checkbox, Button } from "react-materialize";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../../config/index.js";
-import Button from "../../components/Button";
 
 const LoginPage = (props) => {
   let navigate = useNavigate();
@@ -108,12 +107,13 @@ const LoginPage = (props) => {
             <Row>
               <Col className="input-field col s12">
                 <Button
+                  className="blue darken-1 col s12"
                   node="button"
                   type="submit"
                   waves="light"
-                  buttonStyle="primary col s12"
-                  text="Login"
-                />
+                >
+                  Login
+                </Button>
               </Col>
             </Row>
             <div className="center">
