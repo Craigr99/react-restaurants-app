@@ -16,11 +16,12 @@ import RegisterPage from "./pages/user/Register.js";
 import RestaurantIndex from "./pages/restaurants/Index.js";
 import RestaurantShow from "./pages/restaurants/Show.js";
 import RestaurantCreate from "./pages/restaurants/Create.js";
+import RestaurantEdit from "./pages/restaurants/Edit.js";
 import NotFound from "./pages/NotFound.js";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
-  // let protectedRoutes;
+  let protectedRoutes;
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -37,18 +38,24 @@ const App = () => {
     }
   };
 
-  // if (authenticated) {
-  //   protectedRoutes = (
-  //     <>
-  //       <Route
-  //         path="/restaurants/create"
-  //         element={
-  //           authenticated ? <RestaurantCreate /> : <Navigate to="*" replace />
-  //         }
-  //       />
-  //     </>
-  //   );
-  // }
+  if (authenticated) {
+    protectedRoutes = (
+      <>
+        <Route
+          path="/restaurants/create"
+          element={
+            authenticated ? <RestaurantCreate /> : <Navigate to="*" replace />
+          }
+        />
+        <Route
+          path="/restaurants/:id/edit"
+          element={
+            authenticated ? <RestaurantEdit /> : <Navigate to="*" replace />
+          }
+        />
+      </>
+    );
+  }
 
   const onToastToggled = (props) => {
     if (props.onToastToggled) {
@@ -86,11 +93,18 @@ const App = () => {
             />
             <Route
               path="/restaurants"
+              exact
               element={<RestaurantIndex authenticated={authenticated} />}
               onToastToggled={onToastToggled}
             />
-            {/* {protectedRoutes} */}
             <Route
+              path="/restaurants/page=:page"
+              exact
+              element={<RestaurantIndex authenticated={authenticated} />}
+              onToastToggled={onToastToggled}
+            />
+            {protectedRoutes}
+            {/* <Route
               path="/restaurants/create"
               element={
                 authenticated ? (
@@ -100,8 +114,11 @@ const App = () => {
                 )
               }
               onToastToggled={onToastToggled}
+            /> */}
+            <Route
+              path="/restaurants/:id"
+              element={<RestaurantShow authenticated={authenticated} />}
             />
-            <Route path="/restaurants/:id" element={<RestaurantShow />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

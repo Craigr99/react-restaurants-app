@@ -31,7 +31,7 @@ const NavBar = (props) => {
           preventScrolling: true,
         }}
       >
-        <Link to="/restaurants" className="sidenav-close">
+        <Link to="/restaurants/page=0" className="sidenav-close">
           <span>Restaurants</span>
         </Link>
         {/* IF user is logged OUT */}

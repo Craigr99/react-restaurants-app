@@ -1,29 +1,20 @@
 import axios from "../../config/index";
 import { Row, Col, Button, Icon, Card } from "react-materialize";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 const Create = (props) => {
   let navigate = useNavigate();
-  const [coordinates, setCoordinates] = useState([]);
   let token = localStorage.getItem("token");
 
   const {
     register,
     handleSubmit,
-    setValue,
     reset,
-    formState,
     formState: { errors },
   } = useForm();
 
-  const onChange = (e) => {
-    console.log(e);
-    let value = e.target.value;
-    setCoordinates(value.split(","));
-    setValue("address.coord", coordinates);
-  };
   const onSubmit = (restaurant) => {
     restaurant.address.coord = [
       restaurant.address.longitude,
@@ -32,8 +23,6 @@ const Create = (props) => {
     delete restaurant.address.longitude;
     delete restaurant.address.latitude;
 
-    // console.log(restaurant);
-    // console.log(token);
     axios
       .post(
         "/restaurants",
