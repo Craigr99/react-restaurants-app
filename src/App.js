@@ -39,8 +39,8 @@ const App = () => {
     }
   };
 
-  const onToastToggled = (text) => {
-    window.M.toast({ html: text }, 100);
+  const onToastToggled = (text, style) => {
+    window.M.toast({ html: text, classes: style || "" }, 1000);
   };
 
   if (authenticated) {
@@ -59,7 +59,11 @@ const App = () => {
         <Route
           path="/restaurants/:id/edit"
           element={
-            authenticated ? <RestaurantEdit /> : <Navigate to="*" replace />
+            authenticated ? (
+              <RestaurantEdit onToastToggled={onToastToggled} />
+            ) : (
+              <Navigate to="*" replace />
+            )
           }
         />
         <Route

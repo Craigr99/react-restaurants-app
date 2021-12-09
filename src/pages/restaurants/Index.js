@@ -1,5 +1,5 @@
 import axios from "../../config/index";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Button, Icon } from "react-materialize";
 import RestaurantCard from "../../components/RestaurantCard";
 import Map from "../../components/Map";
@@ -8,7 +8,6 @@ import { useNavigate, useParams } from "react-router-dom";
 const Index = (props) => {
   let navigate = useNavigate();
   let { page } = useParams();
-  const childFunc = useRef(null);
 
   if (!page) page = 0;
 

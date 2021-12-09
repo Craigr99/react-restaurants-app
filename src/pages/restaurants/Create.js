@@ -41,7 +41,7 @@ const Create = (props) => {
         console.log(`error: ${err}`);
       });
     navigate("/restaurants");
-    props.onToastToggled("Restaurant Added!");
+    props.onToastToggled("Restaurant Added!", "green");
   };
 
   return (
@@ -210,6 +210,7 @@ const Create = (props) => {
               <Col className="input-field" s={12} l={6}>
                 <input
                   type="number"
+                  step="any"
                   className={
                     ("validate",
                     errors.address && errors.address.longitude ? "invalid" : "")
@@ -219,7 +220,7 @@ const Create = (props) => {
                     minLength: 4,
                   })}
                 />
-                <label htmlFor="longitude">Longitude</label>
+                <label htmlFor="longitude">Longitude (eg. -98.7654)</label>
                 {/* Errors */}
                 {errors.address &&
                   errors.address.longitude?.type === "required" && (
@@ -235,6 +236,7 @@ const Create = (props) => {
               <Col className="input-field" s={12} l={6}>
                 <input
                   type="number"
+                  step="any"
                   className={
                     ("validate",
                     errors.address && errors.address.latitude ? "invalid" : "")
@@ -244,7 +246,7 @@ const Create = (props) => {
                     minLength: 4,
                   })}
                 />
-                <label htmlFor="latitude">Latitude</label>
+                <label htmlFor="latitude">Latitude (eg. 12.3456)</label>
                 {/* Errors */}
                 {errors.address &&
                   errors.address.latitude?.type === "required" && (

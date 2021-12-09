@@ -1,11 +1,11 @@
 import axios from "../../config/index";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Row, Col, Button, Icon, Card } from "react-materialize";
+import { Row, Col, Icon, Card } from "react-materialize";
 
 const Create = () => {
   let { id } = useParams();
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const [restaurant, setRestaurant] = useState(null);
   let token = localStorage.getItem("token");
 

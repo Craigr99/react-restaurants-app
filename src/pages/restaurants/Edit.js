@@ -3,7 +3,7 @@ import { Row, Col, Button, Icon, Card } from "react-materialize";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-const Edit = () => {
+const Edit = (props) => {
   let navigate = useNavigate();
   let { id } = useParams();
 
@@ -44,8 +44,8 @@ const Edit = () => {
       building: restaurant.address ? restaurant.address.building : "",
       zipcode: restaurant.address ? restaurant.address.zipcode : "",
       street: restaurant.address ? restaurant.address.street : "",
-      longitude: restaurant.address ? restaurant.address.coord[0] : "0",
-      latitude: restaurant.address ? restaurant.address.coord[1] : "0",
+      longitude: restaurant.address ? restaurant.address.coord[0] : 0,
+      latitude: restaurant.address ? restaurant.address.coord[1] : 0,
     });
   }, [restaurant]);
 
@@ -70,13 +70,14 @@ const Edit = () => {
 
     console.log("here");
     addressForm.coord = [
-      addressForm.longitude || "0",
-      addressForm.latitude || "0",
+      parseFloat(addressForm.longitude) || 0,
+      parseFloat(addressForm.latitude) || 0,
     ];
     delete addressForm.longitude;
     delete addressForm.latitude;
 
     console.log("address form", addressForm);
+    console.log(addressForm.coord);
 
     axios
       .put(
@@ -108,7 +109,7 @@ const Edit = () => {
         console.log(`error: ${err}`);
       });
     navigate(`/restaurants/${id}`, { replace: true });
-    // props.onToastToggled(true);
+    props.onToastToggled("Restaurant Updated!", "grey darken-1");
   };
 
   return (
@@ -243,7 +244,7 @@ const Edit = () => {
                       required
                     />
                     <label className="active" htmlFor="longitude">
-                      Longitude
+                      Longitude (eg. -98.7654)
                     </label>
                   </>
                 ) : (
@@ -261,7 +262,7 @@ const Edit = () => {
                       required
                     />
                     <label className="active" htmlFor="latitude">
-                      Latitude
+                      Latitude (eg. 12.3456)
                     </label>
                   </>
                 ) : (

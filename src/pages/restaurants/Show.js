@@ -47,7 +47,7 @@ const Show = (props) => {
       .then((res) => {
         console.log(res);
         navigate("/restaurants");
-        props.onToastToggled("Restaurant Deleted!");
+        props.onToastToggled("Restaurant Deleted!", "red darken-1");
       })
       .catch((err) => {
         console.log(err);

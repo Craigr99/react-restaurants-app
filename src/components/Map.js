@@ -45,7 +45,7 @@ const Map = (props) => {
 
   return (
     <>
-      <button onClick={test}>click</button>
+      {/* <button onClick={test}>click</button> */}
       <MapGL
         width="100%"
         height="400px"
