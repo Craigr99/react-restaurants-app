@@ -17,7 +17,7 @@ import RestaurantIndex from "./pages/restaurants/Index.js";
 import RestaurantShow from "./pages/restaurants/Show.js";
 import RestaurantCreate from "./pages/restaurants/Create.js";
 import RestaurantEdit from "./pages/restaurants/Edit.js";
-import ReviewCreate from "./pages/reviews/Create.js";
+import GradeCreate from "./pages/grades/Create.js";
 import NotFound from "./pages/NotFound.js";
 
 const App = () => {
@@ -67,9 +67,9 @@ const App = () => {
           }
         />
         <Route
-          path="/reviews/:id/create"
+          path="/grades/:id/create"
           element={
-            authenticated ? <ReviewCreate /> : <Navigate to="*" replace />
+            authenticated ? <GradeCreate /> : <Navigate to="*" replace />
           }
         />
       </>

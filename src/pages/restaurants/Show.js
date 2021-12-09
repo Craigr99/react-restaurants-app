@@ -199,10 +199,10 @@ const Show = (props) => {
           <span className="flex items-center mt3 mb2">
             <h5 className="my0 mr2">Grades and Reviews</h5>
             {props.authenticated ? (
-              <Link to={`/reviews/${restaurant._id}/create`}>
+              <Link to={`/grades/${restaurant._id}/create`}>
                 <Button className="blue" node="button" small>
                   <Icon left>add</Icon>
-                  Review
+                  Grade
                 </Button>
               </Link>
             ) : (
