@@ -17,6 +17,7 @@ import RestaurantIndex from "./pages/restaurants/Index.js";
 import RestaurantShow from "./pages/restaurants/Show.js";
 import RestaurantCreate from "./pages/restaurants/Create.js";
 import RestaurantEdit from "./pages/restaurants/Edit.js";
+import ReviewCreate from "./pages/reviews/Create.js";
 import NotFound from "./pages/NotFound.js";
 
 const App = () => {
@@ -59,6 +60,12 @@ const App = () => {
           path="/restaurants/:id/edit"
           element={
             authenticated ? <RestaurantEdit /> : <Navigate to="*" replace />
+          }
+        />
+        <Route
+          path="/reviews/:id/create"
+          element={
+            authenticated ? <ReviewCreate /> : <Navigate to="*" replace />
           }
         />
       </>

@@ -126,7 +126,7 @@ const LoginPage = (props) => {
               <div>
                 <p>Don't have an account?</p>
                 <Link to="/register">
-                  <b>Sign up</b>
+                  <b>Register</b>
                 </Link>
               </div>
             </div>

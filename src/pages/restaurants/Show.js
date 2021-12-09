@@ -155,12 +155,12 @@ const Show = (props) => {
       <Row>
         <Col>
           <div className="mt2">
-            <div className="flex items-center">
+            <div className="flex items-center my3">
               <div>
                 <Icon className="grey-text mr2">restaurant</Icon>
               </div>
               <div>
-                <p className="grey-text">
+                <p className="grey-text m0">
                   Cuisine
                   <br />
                   <span className="black-text bold">{restaurant.cuisine}</span>
@@ -171,7 +171,7 @@ const Show = (props) => {
                 <Icon className="grey-text mr2">place</Icon>
               </div>
               <div>
-                <p className="grey-text">
+                <p className="grey-text m0">
                   Location
                   <br />
                   <span className="black-text bold">{restaurant.borough}</span>
@@ -182,7 +182,7 @@ const Show = (props) => {
                 <Icon className="grey-text mr2">map</Icon>
               </div>
               <div>
-                <p className="grey-text">
+                <p className="grey-text m0">
                   Co-Ordinates
                   <br />
                   <span className="black-text bold">
@@ -196,7 +196,19 @@ const Show = (props) => {
       </Row>
       <Row>
         <Col>
-          <h5>Grades and Reviews</h5>
+          <span className="flex items-center mt3 mb2">
+            <h5 className="my0 mr2">Grades and Reviews</h5>
+            {props.authenticated ? (
+              <Link to={`/reviews/${restaurant._id}/create`}>
+                <Button className="blue" node="button" small>
+                  <Icon left>add</Icon>
+                  Review
+                </Button>
+              </Link>
+            ) : (
+              ""
+            )}
+          </span>
           <Row>
             {restaurant.grades.map((grade) => {
               return (

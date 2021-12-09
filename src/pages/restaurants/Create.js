@@ -52,7 +52,6 @@ const Create = (props) => {
           revealIcon={<Icon>more_vert</Icon>}
           title="Add a new Restaurant"
         >
-          {/* <h3>Add a new Restaurant</h3> */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <Row>
               <Col className="input-field" s={12}>

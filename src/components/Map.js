@@ -54,13 +54,17 @@ const Map = (props) => {
         onViewportChange={setViewport}
         mapboxApiAccessToken={MAPBOX_TOKEN}
       >
-        <Marker
-          latitude={viewport.latitude}
-          longitude={viewport.longitude}
-          className="marker"
-        >
-          <div></div>
-        </Marker>
+        {lat && lng ? (
+          <Marker
+            latitude={viewport.latitude}
+            longitude={viewport.longitude}
+            className="marker"
+          >
+            <div></div>
+          </Marker>
+        ) : (
+          <p>"Click 'View on map' to view a restaurant's location"</p>
+        )}
       </MapGL>
     </>
   );
