@@ -57,6 +57,7 @@ const NavBar = (props) => {
               onClick={() => {
                 props.onAuthenticated(false);
                 navigate("/login", { replace: true });
+                props.onToastToggled("Logged Out Successfully!");
               }}
             >
               Logout

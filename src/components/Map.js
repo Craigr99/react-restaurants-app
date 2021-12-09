@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 //import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
 import MapGL, { Marker } from "react-map-gl";
@@ -7,9 +7,10 @@ import "../style/App.css";
 
 const MAPBOX_TOKEN =
   "pk.eyJ1IjoiY3JhaWdyMSIsImEiOiJja3dnaG5qNjQwNWl4MnNwa2s5ejltbTlpIn0.R_64jf1wAuGlBUA2ziGLLQ"; // Set your mapbox token here
-const Map = () => {
-  const [lat] = useState(0);
-  const [lng] = useState(0);
+const Map = (props) => {
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
+
   const [viewport, setViewport] = useState({
     latitude: lat,
     longitude: lng,
@@ -18,12 +19,27 @@ const Map = () => {
     pitch: 0,
   });
 
+  useEffect(() => {
+    try {
+      setLat(props.coordinates[1]);
+      setLng(props.coordinates[0]);
+
+      setViewport({
+        latitude: lat || 0,
+        longitude: lng || 0,
+        zoom: 12,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [lat, lng, props.coordinates]);
+
   const test = () => {
     console.log("test");
     setViewport({
-      latitude: 40.579505,
-      longitude: -73.98241999999999,
-      zoom: 14,
+      latitude: props.coordinates[1],
+      longitude: props.coordinates[0],
+      zoom: 10,
     });
   };
 

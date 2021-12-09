@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Card, Icon, CardTitle, Button } from "react-materialize";
 import { Link } from "react-router-dom";
 
@@ -54,9 +54,17 @@ const RestaurantCard = (props) => {
             ", " +
             props.restaurant.borough}
         </p>
-        <p>
-          <a href="/">View on Map</a>
-        </p>
+        <Button
+          flat
+          className="blue-text"
+          style={{ padding: 0 }}
+          onClick={() => {
+            window.scrollTo(0, 0);
+            props.handleSetCoordinates(props.restaurant.address.coord);
+          }}
+        >
+          View on Map
+        </Button>
       </Card>
     </Col>
   );

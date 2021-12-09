@@ -1,5 +1,5 @@
 import axios from "../../config/index";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Row, Col, Button, Icon } from "react-materialize";
 import RestaurantCard from "../../components/RestaurantCard";
 import Map from "../../components/Map";
@@ -8,10 +8,12 @@ import { useNavigate, useParams } from "react-router-dom";
 const Index = (props) => {
   let navigate = useNavigate();
   let { page } = useParams();
+  const childFunc = useRef(null);
 
   if (!page) page = 0;
 
   const [restaurants, setRestaurants] = useState(null);
+  const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
     axios
@@ -23,6 +25,10 @@ const Index = (props) => {
         console.log(err);
       });
   });
+
+  const handleSetCoordinates = (data) => {
+    setCoordinates(data);
+  };
 
   if (!restaurants) return null;
 
@@ -59,6 +65,7 @@ const Index = (props) => {
                   onToastToggled={props.onToastToggled}
                   index={i}
                   key={i}
+                  handleSetCoordinates={handleSetCoordinates}
                 />
               );
             })}
@@ -85,7 +92,7 @@ const Index = (props) => {
           </div>
         </Col>
         <Col m={6} className="hide-on-med-and-down show-on-large">
-          <Map />
+          <Map coordinates={coordinates} />
         </Col>
       </Row>
     </div>

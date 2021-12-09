@@ -71,6 +71,7 @@ const App = () => {
         <NavBar
           onAuthenticated={onAuthenticated}
           authenticated={authenticated}
+          onToastToggled={onToastToggled}
         />
         <main className="container">
           <Routes>
@@ -90,6 +91,7 @@ const App = () => {
                 <RegisterPage
                   onAuthenticated={onAuthenticated}
                   authenticated={authenticated}
+                  onToastToggled={onToastToggled}
                 />
               }
             />

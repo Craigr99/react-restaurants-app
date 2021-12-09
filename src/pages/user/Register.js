@@ -1,8 +1,7 @@
-import { Row, Col, Card, Icon } from "react-materialize";
+import { Row, Col, Card, Icon, Button } from "react-materialize";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../../config/index.js";
-import Button from "../../components/Button";
 import { useState } from "react";
 
 const RegisterPage = (props) => {
@@ -28,6 +27,7 @@ const RegisterPage = (props) => {
         console.log(res.data.auth_token);
         props.onAuthenticated(true, res.data.auth_token);
         navigate("/restaurants");
+        props.onToastToggled("Registered Successfully!");
       })
       .catch((err) => {
         if (err) {
@@ -135,12 +135,13 @@ const RegisterPage = (props) => {
             <Row>
               <Col className="input-field col s12">
                 <Button
+                  className="blue darken-1 col s12"
                   node="button"
                   type="submit"
                   waves="light"
-                  buttonStyle="primary col s12"
-                  text="Register"
-                />
+                >
+                  Register
+                </Button>
               </Col>
             </Row>
             <div className="center">
