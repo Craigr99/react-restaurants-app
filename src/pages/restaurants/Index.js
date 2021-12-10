@@ -70,24 +70,26 @@ const Index = (props) => {
             })}
           </Row>
           <div className="flex justify-between">
-            <button
+            <Button
+              className="blue accent-3"
               onClick={() => {
                 page--;
                 navigate(`/restaurants/page=${page}`);
                 window.scrollTo(0, 0);
               }}
             >
-              back
-            </button>
-            <button
+              <Icon>chevron_left</Icon>
+            </Button>
+            <Button
+              className="blue accent-3"
               onClick={() => {
                 page++;
                 navigate(`/restaurants/page=${page}`);
                 window.scrollTo(0, 0);
               }}
             >
-              forward
-            </button>
+              <Icon>chevron_right</Icon>
+            </Button>
           </div>
         </Col>
         <Col m={6} className="hide-on-med-and-down show-on-large">

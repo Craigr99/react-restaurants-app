@@ -13,7 +13,7 @@ import {
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
 
-const Create = () => {
+const Create = (props) => {
   let { id } = useParams();
   let navigate = useNavigate();
   const [restaurant, setRestaurant] = useState(null);
@@ -71,6 +71,7 @@ const Create = () => {
       .then((res) => {
         console.log(res);
         navigate(`/restaurants/${id}`);
+        props.onToastToggled("Grade Posted!", "green");
       })
       .catch((err) => console.log(err));
   };

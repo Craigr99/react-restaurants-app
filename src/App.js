@@ -69,7 +69,11 @@ const App = () => {
         <Route
           path="/grades/:id/create"
           element={
-            authenticated ? <GradeCreate /> : <Navigate to="*" replace />
+            authenticated ? (
+              <GradeCreate onToastToggled={onToastToggled} />
+            ) : (
+              <Navigate to="*" replace />
+            )
           }
         />
       </>

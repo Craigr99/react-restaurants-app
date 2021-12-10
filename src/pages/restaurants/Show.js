@@ -11,6 +11,7 @@ import {
   CollectionItem,
   Modal,
 } from "react-materialize";
+import Map from "../../components/Map.js";
 
 const Show = (props) => {
   let { id } = useParams();
@@ -64,8 +65,10 @@ const Show = (props) => {
             alt="restaurant"
           />
         </Col>
-        <Col s={12} l={4}>
-          <div className="red">map goes here</div>
+        <Col l={4} className="hide-on-med-and-down">
+          <div>
+            <Map coordinates={restaurant.address.coord} />
+          </div>
         </Col>
       </Row>
       <Row>
@@ -153,42 +156,51 @@ const Show = (props) => {
       </Row>
       <hr />
       <Row>
-        <Col>
+        <Col s={12}>
           <div className="mt2">
-            <div className="flex items-center my3">
-              <div>
-                <Icon className="grey-text mr2">restaurant</Icon>
+            <div className="flex items-center flex-wrap my3">
+              <div className="flex items-center">
+                <div>
+                  <Icon className="grey-text mr2">restaurant</Icon>
+                </div>
+                <div>
+                  <p className="grey-text m0">
+                    Cuisine
+                    <br />
+                    <span className="black-text bold">
+                      {restaurant.cuisine}
+                    </span>
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="grey-text m0">
-                  Cuisine
-                  <br />
-                  <span className="black-text bold">{restaurant.cuisine}</span>
-                </p>
+              <div className="flex items-center">
+                <div className="ml4">
+                  <Icon className="grey-text mr2">place</Icon>
+                </div>
+                <div>
+                  <p className="grey-text m0">
+                    Location
+                    <br />
+                    <span className="black-text bold">
+                      {restaurant.borough}
+                    </span>
+                  </p>
+                </div>
               </div>
-
-              <div className="ml4">
-                <Icon className="grey-text mr2">place</Icon>
-              </div>
-              <div>
-                <p className="grey-text m0">
-                  Location
-                  <br />
-                  <span className="black-text bold">{restaurant.borough}</span>
-                </p>
-              </div>
-
-              <div className="ml4">
-                <Icon className="grey-text mr2">map</Icon>
-              </div>
-              <div>
-                <p className="grey-text m0">
-                  Co-Ordinates
-                  <br />
-                  <span className="black-text bold">
-                    {restaurant.address.coord[0]}, {restaurant.address.coord[1]}
-                  </span>
-                </p>
+              <div className="flex items-center">
+                <div className="ml4">
+                  <Icon className="grey-text mr2">map</Icon>
+                </div>
+                <div>
+                  <p className="grey-text m0">
+                    Co-Ordinates
+                    <br />
+                    <span className="black-text bold">
+                      {restaurant.address.coord[0]},{" "}
+                      {restaurant.address.coord[1]}
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -212,16 +224,32 @@ const Show = (props) => {
           <Row>
             {restaurant.grades.map((grade) => {
               return (
-                <Col s={12} key={grade.date}>
+                <Col s={12} m={6} key={grade.date}>
                   <Collection>
                     <CollectionItem>
-                      <h6>{moment(grade.date).format("MMMM Do YYYY")}</h6>
-                      <p>
-                        <span className="bold">Score:</span> {grade.score}
-                      </p>
-                      <p>
-                        <span className="bold">Grade:</span> {grade.grade}
-                      </p>
+                      <div className="sm-flex justify-between items-center">
+                        <blockquote>
+                          <h6>{moment(grade.date).format("MMMM Do YYYY")}</h6>
+                          <span className="blue-text text-accent-4">
+                            {grade.user_name ? grade.user_name : "John Doe"}
+                          </span>
+                        </blockquote>
+                        <div className="flex items-center">
+                          <div className="center-align mr3">
+                            <p>Score:</p>
+                            <h5 className="bold blue-text text-accent-4">
+                              {grade.score}
+                            </h5>
+                          </div>
+                          <div className="center-align">
+                            <p>Grade:</p>
+                            <h5 className="bold blue-text text-accent-4">
+                              {grade.grade}
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="flow-text">{grade.comment}</p>
                     </CollectionItem>
                   </Collection>
                 </Col>
