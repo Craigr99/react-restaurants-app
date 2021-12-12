@@ -1,5 +1,5 @@
 import axios from "../../config/index";
-import { Row, Col, Button, Icon, Card } from "react-materialize";
+import { Row, Col, Button, Icon, Card, ProgressBar } from "react-materialize";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -11,6 +11,7 @@ const Edit = (props) => {
   const [addressForm, setAddressForm] = useState({});
 
   const [restaurant, setRestaurant] = useState({});
+  const [loading, setLoading] = useState(true);
 
   let token = localStorage.getItem("token");
 
@@ -24,6 +25,7 @@ const Edit = (props) => {
       .then((res) => {
         console.log(res.data.restaurant);
         setRestaurant(res.data.restaurant);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(`Error: ${err}`);
@@ -112,6 +114,16 @@ const Edit = (props) => {
     props.onToastToggled("Restaurant Updated!", "grey darken-1");
   };
 
+  const PreLoader = () => {
+    return (
+      <Row>
+        <Col s={12}>
+          <ProgressBar />
+        </Col>
+      </Row>
+    );
+  };
+
   return (
     <Row className="mt3">
       <Col s={12} m={6} offset={"m3"}>
@@ -123,103 +135,151 @@ const Edit = (props) => {
           <form onSubmit={onSubmit}>
             <Row>
               <Col className="input-field" s={12}>
-                <input
-                  name="name"
-                  type="text"
-                  onChange={handleForm}
-                  value={restaurantForm.name || ""}
-                  required
-                />
-                <label className="active" htmlFor="name">
-                  Restaurant Name
-                </label>
+                {restaurantForm.name || !loading ? (
+                  <>
+                    <input
+                      name="name"
+                      type="text"
+                      onChange={handleForm}
+                      value={restaurantForm.name || ""}
+                      required
+                    />
+                    <label className="active" htmlFor="name">
+                      Restaurant Name
+                    </label>
+                  </>
+                ) : (
+                  <PreLoader />
+                )}
               </Col>
 
               <Col className="input-field" s={12}>
-                <input
-                  name="borough"
-                  type="text"
-                  onChange={handleForm}
-                  value={restaurantForm.borough || ""}
-                  required
-                />
-                <label htmlFor="borough" className="active">
-                  Borough
-                </label>
+                {restaurantForm.borough || !loading ? (
+                  <>
+                    <input
+                      name="borough"
+                      type="text"
+                      onChange={handleForm}
+                      value={restaurantForm.borough || ""}
+                      required
+                    />
+                    <label htmlFor="borough" className="active">
+                      Borough
+                    </label>
+                  </>
+                ) : (
+                  <PreLoader />
+                )}
               </Col>
               <Col className="input-field col s12">
-                <input
-                  name="cuisine"
-                  type="text"
-                  onChange={handleForm}
-                  value={restaurantForm.cuisine || ""}
-                  required
-                />
-                <label className="active" htmlFor="cuisine">
-                  Cuisine
-                </label>
+                {restaurantForm.cuisine || !loading ? (
+                  <>
+                    <input
+                      name="cuisine"
+                      type="text"
+                      onChange={handleForm}
+                      value={restaurantForm.cuisine || ""}
+                      required
+                    />
+                    <label className="active" htmlFor="cuisine">
+                      Cuisine
+                    </label>
+                  </>
+                ) : (
+                  <PreLoader />
+                )}
               </Col>
               <Col className="input-field" s={12} l={6}>
-                <input
-                  name="building"
-                  type="number"
-                  value={addressForm.building || ""}
-                  onChange={handleAddressForm}
-                  required
-                />
-                <label className="active" htmlFor="building">
-                  Building
-                </label>
+                {addressForm.building || !loading ? (
+                  <>
+                    <input
+                      name="building"
+                      type="number"
+                      value={addressForm.building || ""}
+                      onChange={handleAddressForm}
+                      required
+                    />
+                    <label className="active" htmlFor="building">
+                      Building
+                    </label>
+                  </>
+                ) : (
+                  <PreLoader />
+                )}
               </Col>
               <Col className="input-field" s={12} l={6}>
-                <input
-                  name="zipcode"
-                  type="number"
-                  value={addressForm.zipcode || ""}
-                  onChange={handleAddressForm}
-                  required
-                />
-                <label className="active" htmlFor="zipcode">
-                  Zipcode
-                </label>
+                {addressForm.zipcode || !loading ? (
+                  <>
+                    <input
+                      name="zipcode"
+                      type="number"
+                      value={addressForm.zipcode || ""}
+                      onChange={handleAddressForm}
+                      required
+                    />
+                    <label className="active" htmlFor="zipcode">
+                      Zipcode
+                    </label>
+                  </>
+                ) : (
+                  <PreLoader />
+                )}
               </Col>
 
               <Col className="input-field col s12">
-                <input
-                  name="street"
-                  type="text"
-                  value={addressForm.street || ""}
-                  onChange={handleAddressForm}
-                  required
-                />
-                <label className="active" htmlFor="street">
-                  Street
-                </label>
+                {addressForm.street || !loading ? (
+                  <>
+                    <input
+                      name="street"
+                      type="text"
+                      value={addressForm.street || ""}
+                      onChange={handleAddressForm}
+                      required
+                    />
+                    <label className="active" htmlFor="street">
+                      Street
+                    </label>
+                  </>
+                ) : (
+                  <PreLoader />
+                )}
               </Col>
 
               <Col className="input-field" s={12} l={6}>
-                <input
-                  name="longitude"
-                  type="number"
-                  value={addressForm.longitude || ""}
-                  onChange={handleAddressForm}
-                  required
-                />
-                <label className="active" htmlFor="longitude">
-                  Longitude (eg. -98.7654)
-                </label>
+                {addressForm.longitude || !loading ? (
+                  <>
+                    <input
+                      name="longitude"
+                      type="number"
+                      value={addressForm.longitude || ""}
+                      onChange={handleAddressForm}
+                      required
+                    />
+                    <label className="active" htmlFor="longitude">
+                      Longitude (eg. -98.7654)
+                    </label>
+                  </>
+                ) : (
+                  <PreLoader />
+                )}
               </Col>
               <Col className="input-field" s={12} l={6}>
-                <input
-                  name="latitude"
-                  type="number"
-                  value={addressForm.latitude || ""}
-                  onChange={handleAddressForm}
-                  required
-                />
-                <label className="active" htmlFor="latitude">
-                  Latitude (eg. 12.3456)
-                </label>
+                {addressForm.latitude || !loading ? (
+                  <>
+                    <input
+                      name="latitude"
+                      type="number"
+                      value={addressForm.latitude || ""}
+                      onChange={handleAddressForm}
+                      required
+                    />
+                    <label className="active" htmlFor="latitude">
+                      Latitude (eg. 12.3456)
+                    </label>
+                  </>
+                ) : (
+                  <PreLoader />
+                )}
               </Col>
             </Row>
             <Row>
