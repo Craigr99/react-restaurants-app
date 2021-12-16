@@ -55,14 +55,22 @@ const Show = (props) => {
       });
   };
 
+  const getRandomNumber = () => {
+    return Math.floor(Math.random() * 206);
+  };
+
   return (
     <div className="mt3">
       <Row>
         <Col s={12} l={8}>
           <img
             className="responsive-img"
-            src="https://materializecss.com/images/sample-1.jpg"
+            src={
+              "https://source.unsplash.com/collection/190727/?sig=" +
+              getRandomNumber()
+            }
             alt="restaurant"
+            height="400px"
           />
         </Col>
         <Col l={4} className="hide-on-med-and-down">

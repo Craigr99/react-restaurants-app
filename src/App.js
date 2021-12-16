@@ -97,6 +97,7 @@ const App = () => {
                 <LoginPage
                   onAuthenticated={onAuthenticated}
                   authenticated={authenticated}
+                  onToastToggled={onToastToggled}
                 />
               }
             />

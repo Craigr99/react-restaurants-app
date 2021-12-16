@@ -25,6 +25,7 @@ const LoginPage = (props) => {
         console.log(res.data.auth_token);
         props.onAuthenticated(true, res.data.auth_token);
         navigate("/restaurants");
+        props.onToastToggled("Welcome Back!", "blue");
       })
       .catch((err) => {
         console.log(`error: ${err}`);

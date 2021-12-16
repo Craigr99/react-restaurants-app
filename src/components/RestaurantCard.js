@@ -3,29 +3,67 @@ import { Col, Card, Icon, CardTitle, Button } from "react-materialize";
 import { Link } from "react-router-dom";
 
 const RestaurantCard = (props) => {
+  const getRandomNumber = () => {
+    return Math.floor(Math.random() * 206);
+  };
   return (
     <Col s={12} m={6}>
-      {/* <img
-      //   src={
-      //     "https://source.unsplash.com/collection/190727/?sig=" +
-      //     getRandomNumber()
-      //   }
-      // /> */}
       <Card
         title={props.restaurant.name}
         closeIcon={<Icon>close</Icon>}
         header={
           <CardTitle
-            image="https://materializecss.com/images/sample-1.jpg"
+            image={"https://source.unsplash.com/collection/190727/?sig="}
             reveal
             waves="light"
           />
         }
         reveal={
-          <p>
-            Here is some more information about this product that is only
-            revealed once clicked on.
-          </p>
+          <div className="flex flex-column my3">
+            <div className="flex items-center">
+              <div>
+                <Icon className="grey-text mr2">restaurant</Icon>
+              </div>
+              <div>
+                <p className="grey-text m0">
+                  Cuisine
+                  <br />
+                  <span className="black-text bold">
+                    {props.restaurant.cuisine}
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center mt3">
+              <div>
+                <Icon className="grey-text mr2">place</Icon>
+              </div>
+              <div>
+                <p className="grey-text m0">
+                  Location
+                  <br />
+                  <span className="black-text bold">
+                    {props.restaurant.borough}
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center mt3">
+              <div>
+                <Icon className="grey-text mr2">map</Icon>
+              </div>
+              <div>
+                <p className="grey-text m0">
+                  Co-Ordinates
+                  <br />
+                  <span className="black-text bold">
+                    {props.restaurant.address.coord[0]},{" "}
+                    {props.restaurant.address.coord[1]}
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
         }
         revealIcon={<Icon>more_vert</Icon>}
         actions={[
