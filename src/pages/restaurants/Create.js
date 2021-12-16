@@ -23,6 +23,8 @@ const Create = (props) => {
     delete restaurant.address.longitude;
     delete restaurant.address.latitude;
 
+    restaurant.grades = [];
+
     axios
       .post(
         "/restaurants",

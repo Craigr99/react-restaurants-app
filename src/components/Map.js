@@ -21,8 +21,8 @@ const Map = (props) => {
 
   useEffect(() => {
     try {
-      setLat(props.coordinates[1]);
-      setLng(props.coordinates[0]);
+      setLat(parseFloat(props.coordinates[1]));
+      setLng(parseFloat(props.coordinates[0]));
 
       setViewport({
         latitude: lat || 0,
